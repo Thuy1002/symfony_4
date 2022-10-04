@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Animal;
+
 //use Doctrine\DBAL\Types\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -18,38 +19,54 @@ class AnnimalController extends AbstractController
     /**
      * @Route("/animal", name="app_annimal")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
 //        $animal = $this->getDoctrine()->getRepository(Animal::class)->findAll();
 //        return $this->render('animal/index.html.twig', [
 //            'An' => $animal,
 //        ]);
         $animal = $this->getDoctrine()->getRepository(Animal::class)->findAll();
+        if (isset($_GET['search'])) {
+            $animal = $this->getDoctrine()->getRepository(Animal::class)->findBy(['name' => $_GET['search']]);
+        }
         return $this->render('animal/index.html.twig', array('An' => $animal));
     }
-  
-    
-    /**
-     * @Route("/annimal/{id}", name="show_animal")
-     *
-     */
-    public function show($id): Response
-    {
-        $animal = $this->getDoctrine()->getRepository(Animal::class)->find($id);
-        return $this->render('animal/show.html.twig', ['detail'=> $animal]);
-    }
+
+//
+//    /** @Route("/search", name="search")
+//     * Method({"Get"})
+//     */
+//    public function search(Request $request)
+//    {
+//        $name = $_GET['search'];
+////      $search = Animal::where('name', 'like', '%' . $name . '%')->get();
+//        $search = $this->getDoctrine()->getRepository(Animal::class)->findBy('name', 'like', '%' . $name . '%');
+//
+//        return $this->render('animal/search.html.twig', array('An' => $search));
+//        // dd($search);
+//
+//    }
+
+//    /**
+//     * @Route("/annimal/{id}", name="show_animal")
+//     *
+//     */
+//    public function show($id): Response
+//    {
+//        $animal = $this->getDoctrine()->getRepository(Animal::class)->find($id);
+//        return $this->render('animal/show.html.twig', ['detail' => $animal]);
+//    }
+
     /**
      * @Route("/add",name="animal_add")
      * Method({"GET", "POST"})
      */
-    public function add( Request $request)
+    public function add(Request $request)
     {
         $Animal = new Animal();
         $form = $this->createFormBuilder($Animal)
             ->add('name', TextType::class, array('attr' => array('class' => 'form-control')))
-
-
-            ->add('weight', NumberType::class, array('required' => FALSE, 'attr' => array('class' => 'form-control' )))
+            ->add('weight', NumberType::class, array('required' => FALSE, 'attr' => array('class' => 'form-control')))
             ->add('color', TextareaType::class, array('required' => FALSE, 'attr' => array('class' => 'form-control')))
             ->add('save', SubmitType::class, array(
                 'label' => 'Create',
@@ -66,11 +83,13 @@ class AnnimalController extends AbstractController
         }
         return $this->render('animal/add.html.twig', array('form' => $form->createView()));
     }
+
     /**
      * @Route("/animal/edit/{id}", name="edit_article")
      * Method({"GET", "POST"})
      */
-    public function edit(Request $request, $id) {
+    public function edit(Request $request, $id)
+    {
         $animal = new Animal();
         $animal = $this->getDoctrine()->getRepository(Animal::class)->find($id);
 
@@ -92,7 +111,7 @@ class AnnimalController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
@@ -104,11 +123,13 @@ class AnnimalController extends AbstractController
             'form' => $form->createView()
         ));
     }
+
     /**
      * @Route("/animal/delete/{id}")
      * Method({"DELETE"})
      */
-    public function delete(Request $request, $id) {
+    public function delete(Request $request, $id)
+    {
         $animal = $this->getDoctrine()->getRepository(Animal::class)->find($id);
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -117,9 +138,7 @@ class AnnimalController extends AbstractController
         return $this->redirectToRoute('app_annimal');
 
 
-
     }
-
 
 
 }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AnnimalController!{% endblock %}
+{% block title %} AnnimalController!{% endblock %}
 
 {% block body %}
     <style>
@@ -16,13 +16,15 @@
             padding: 2px 6px;
         }
     </style>
-
+           <div style=" margin: 0 346px;" class="mb-3">
+                 Xin chào {{ app.user.username }}, <a href="{{ path('app_login') }}">Logout</a>
+           </div>
     <div class="example-wrapper">
 
         <div>
-            <form action="">
-                <input type="text">
-                <button>Search</button>
+            <form method="get" class="d-inline-flex" action="">
+                <input class="input-group-text" type="text" name="search">
+                <button  class="btn-group">Search</button>
             </form>
         </div>
         <h2><a href="/add" class="btn btn-success " >Thêm Mới</a></h2>
@@ -50,9 +52,9 @@
                     <th>
                     <th>{{ an.color }}
                     <th>
-                    <th>{{ an.weight }}
+                    <th>{{ an.weight }} kg
                     <th>
-                    <th><a href="/animal/{{an.id}}">show</a>
+                    <th>
                         <a href="/animal/edit/{{ an.id }}" class="btn btn-light">Edit</a>
                         <a href="/animal/delete/{{ an.id }}" class="btn btn-danger">Delete</a>
 

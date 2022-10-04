@@ -6,6 +6,7 @@ use App\Entity\Animal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -47,6 +48,9 @@ class AnimalRepository extends ServiceEntityRepository
         }
     }
 
+    public function where($where){
+
+}
     // /**
     //  * @return Animal[] Returns an array of Animal objects
     //  */
