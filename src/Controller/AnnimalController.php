@@ -25,27 +25,24 @@ class AnnimalController extends AbstractController
 //        return $this->render('animal/index.html.twig', [
 //            'An' => $animal,
 //        ]);
-        $animal = $this->getDoctrine()->getRepository(Animal::class)->findAll();
-        if (isset($_GET['search'])) {
-            $animal = $this->getDoctrine()->getRepository(Animal::class)->findBy(['name' => $_GET['search']]);
+        $search = $request->query->get('search');
+        if ($search) {
+            $animal = $this->getDoctrine()->getRepository(Animal::class)->search($search);
+        } else {
+            $animal = $this->getDoctrine()->getRepository(Animal::class)->findAll();
         }
         return $this->render('animal/index.html.twig', array('An' => $animal));
     }
 
-//
-//    /** @Route("/search", name="search")
-//     * Method({"Get"})
-//     */
-//    public function search(Request $request)
-//    {
-//        $name = $_GET['search'];
+
+    /** @Route("/search", name="search")
+     * Method({"Get"})
+     */
+
+
 ////      $search = Animal::where('name', 'like', '%' . $name . '%')->get();
-//        $search = $this->getDoctrine()->getRepository(Animal::class)->findBy('name', 'like', '%' . $name . '%');
-//
-//        return $this->render('animal/search.html.twig', array('An' => $search));
-//        // dd($search);
-//
-//    }
+//        $search = $this->getDoctrine()->getRepository(Animal::class)->search();
+
 
 //    /**
 //     * @Route("/annimal/{id}", name="show_animal")

@@ -25,6 +25,8 @@ class User implements UserInterface
      */
     private $email;
 
+
+
     /**
      * @ORM\Column(type="json")
      */
@@ -32,7 +34,7 @@ class User implements UserInterface
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $password;
 
@@ -49,6 +51,16 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

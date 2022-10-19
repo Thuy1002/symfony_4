@@ -48,9 +48,14 @@ class AnimalRepository extends ServiceEntityRepository
         }
     }
 
-    public function where($where){
-
-}
+    public function search($term)
+    {
+        return $this->createQueryBuilder('animals')
+            ->andWhere('animals.name like :searchTerm')
+            ->setParameter('searchTerm', '%'.$term.'%')
+            ->getQuery()
+            ->execute();
+    }
     // /**
     //  * @return Animal[] Returns an array of Animal objects
     //  */

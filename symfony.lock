@@ -145,6 +145,18 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/messenger": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.4",
+            "ref": "dfe610928a5c61619bdfc830cd7fa7f091368023"
+        },
+        "files": [
+            "./config/packages/messenger.yaml"
+        ]
+    },
     "symfony/monolog-bundle": {
         "version": "3.8",
         "recipe": {
@@ -158,6 +170,18 @@
             "./config/packages/prod/deprecations.yaml",
             "./config/packages/prod/monolog.yaml",
             "./config/packages/test/monolog.yaml"
+        ]
+    },
+    "symfony/notifier": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.0",
+            "ref": "c31585e252b32fe0e1f30b1f256af553f4a06eb9"
+        },
+        "files": [
+            "./config/packages/notifier.yaml"
         ]
     },
     "symfony/phpunit-bridge": {
@@ -254,15 +278,6 @@
             "./config/packages/test/web_profiler.yaml",
             "./config/routes/dev/web_profiler.yaml"
         ]
-    },
-    "symfony/web-server-bundle": {
-        "version": "4.4",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "3.3",
-            "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
-        }
     },
     "twig/extra-bundle": {
         "version": "v3.4.0"

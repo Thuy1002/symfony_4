@@ -21,12 +21,12 @@
            </div>
     <div class="example-wrapper">
 
-        <div>
-            <form method="get" class="d-inline-flex" action="">
-                <input class="input-group-text" type="text" name="search">
-                <button  class="btn-group">Search</button>
-            </form>
-        </div>
+        <div style=" margin: 0 0px;">
+    <form method="get" class="d-inline-flex" action="">
+        <input class="input-group-text" type="text" name="search">
+        <button class="btn-group">Search</button>
+    </form>
+</div>
         <h2><a href="/add" class="btn btn-success " >Thêm Mới</a></h2>
         <table class="table">
             <thead>
@@ -55,8 +55,8 @@
                     <th>{{ an.weight }} kg
                     <th>
                     <th>
-                        <a href="/animal/edit/{{ an.id }}" class="btn btn-light">Edit</a>
-                        <a href="/animal/delete/{{ an.id }}" class="btn btn-danger">Delete</a>
+                        <a href="animal/edit/{{ an.id }}" class="btn btn-light">Edit</a>
+                        <a href="animal/delete/{{ an.id }}" class="btn btn-danger">Delete</a>
 
                     <th>
                 </tr>
