@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class AnnimalController extends AbstractController
 {
     /**
-     * @Route("/animal", name="app_annimal")
+     * @Route("/", name="app_annimal")
      */
     public function index(Request $request): Response
     {
